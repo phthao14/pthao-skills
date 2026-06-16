@@ -88,12 +88,10 @@ Use the exact template below. Keep the structure, replace placeholder content.
 ### ✅ Test Points — UI
 _(omit this section if user chose API only)_
 
-**[Flow name 1]**
-- [case]
-- [case]
-
-**[Flow name 2]**
-- [case]
+| # | Area | Test point |
+|---|---|---|
+| 1 | [area] | [what to verify] |
+| 2 | [area] | [what to verify] |
 
 ---
 
