@@ -27,6 +27,11 @@ Accept PBI as pasted text, screenshot, or attached file (doc, pdf).
 If there is not enough information to understand the feature, ask exactly 1 clarifying question.
 If the user provides a URL → use WebFetch to read it before analyzing.
 
+When reading a PBI, extract information from these fields:
+- **Description** — the user story / feature requirement
+- **Conditions of acceptance** — defines what must be true for the PBI to be done; use this to scope test points
+- **Attachment** — spec docs, mockups, or other references attached to the PBI (if any)
+
 ## Step 1.5: Ask about Garoon app and analysis scope
 
 After reading the PBI, ask the user 2 questions at once:
