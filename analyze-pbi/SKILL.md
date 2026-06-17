@@ -43,11 +43,16 @@ Use `mcp__kintone__kintone-get-records` with the app ID and record ID derived fr
 Example: `GTM-21117` → app `5095`, record `21117`.
 
 Fetch the record, then extract these fields from the response:
-- **Description** — the user story / feature requirement
+- **Description** — the user story / feature requirement. Read every bullet point individually — do not summarize into a general intent. Each bullet may contain a distinct requirement that becomes a separate test point.
 - **Conditions of acceptance** — defines what must be true for the PBI to be done; use this to scope test points
 - **Attachment** — spec docs, mockups, or other references attached to the PBI (if any)
 
 If attachments exist → use `mcp__kintone__kintone-download-file` to read their content before proceeding.
+
+**Spec links in Description:**
+- If the Description contains a spec URL (e.g. Confluence, Google Docs, Sharedoc) → try WebFetch first.
+- If WebFetch fails (authentication required) → ask the user: "The PBI links to a spec at [URL] but I can't access it. Do you have the spec content to share?"
+- Do not proceed without the spec if it appears to contain key requirements.
 
 ## Step 1.5: Ask about Garoon app and analysis scope
 
