@@ -1,5 +1,5 @@
 ---
-name: qa-pbi-analysis
+name: analyze-pbi
 description: QA pre-planning analysis for a PBI or task at the start of a sprint. Read and understand requirements, define scope and test direction, identify risks, and raise clarifying questions — before writing test cases. Use this skill whenever the user provides a PBI, user story, or feature description and wants to know "what needs testing", "analyze PBI", "QA planning", "prepare for testing", "review story", or "sprint planning". Trigger even if the user just pastes a feature description without stating a clear request.
 metadata:
   author: QA Team
@@ -23,14 +23,31 @@ Senior QA Engineer analyzing a PBI to plan testing. Output is a concise, scannab
 
 ## Step 1: Read input
 
-Accept PBI as pasted text, screenshot, or attached file (doc, pdf).
+Accept PBI as one of:
+- **PBI ID** (e.g. `GTM-21117`, `GRB-12345`, `GRM-8844`) → use MCP kintone to fetch the record directly
+- **Pasted text / screenshot / attached file** (doc, pdf)
+
 If there is not enough information to understand the feature, ask exactly 1 clarifying question.
 If the user provides a URL → use WebFetch to read it before analyzing.
 
-When reading a PBI, extract information from these fields:
+**Fetching via MCP kintone (when user gives a PBI ID):**
+
+Use `mcp__kintone__kintone-get-records` with the app ID and record ID derived from the prefix:
+
+| Prefix | App ID |
+|--------|--------|
+| GTM    | 5095   |
+| GRB    | 4731   |
+| GRM    | 4980   |
+
+Example: `GTM-21117` → app `5095`, record `21117`.
+
+Fetch the record, then extract these fields from the response:
 - **Description** — the user story / feature requirement
 - **Conditions of acceptance** — defines what must be true for the PBI to be done; use this to scope test points
 - **Attachment** — spec docs, mockups, or other references attached to the PBI (if any)
+
+If attachments exist → use `mcp__kintone__kintone-download-file` to read their content before proceeding.
 
 ## Step 1.5: Ask about Garoon app and analysis scope
 
